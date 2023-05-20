@@ -6,26 +6,36 @@ const WEB_APP_URL = process.env.WEB_APP_URL;
 const SPREAD_SHEET_ID = process.env.SPREAD_SHEET_ID;
 const SHEET_NAME = process.env.SHEET_NAME;
 
-const auth = new google.auth.GoogleAuth({
-    keyFilename: "keyFile.json",
-    scopes: [
-        "https://www.googleapis.com/auth/forms",
-        "https://www.googleapis.com/auth/spreadsheets",
-        "https://www.googleapis.com/auth/drive",
-        "https://www.googleapis.com/auth/drive.readonly",
+var auth = null;
 
-        "https://www.googleapis.com/auth/script.projects.readonly",
-        "https://www.googleapis.com/auth/script.projects",
-        "https://www.googleapis.com/auth/script.processes",
-        "https://www.googleapis.com/auth/script.metrics",
-        "https://www.googleapis.com/auth/script.deployments.readonly",
-        "https://www.googleapis.com/auth/script.deployments",
-        "https://www.googleapis.com/auth/drive.file",
-    ],
-});
+async function loadAuth() {
+    if (auth === null) {
+        const keyFileResp = await axios.get(process.env.GOOGLE_AUTH_KEYFILE);
+
+        auth = new google.auth.GoogleAuth({
+            credentials: keyFileResp.data,
+            scopes: [
+                "https://www.googleapis.com/auth/forms",
+                "https://www.googleapis.com/auth/spreadsheets",
+                "https://www.googleapis.com/auth/drive",
+                "https://www.googleapis.com/auth/drive.readonly",
+
+                "https://www.googleapis.com/auth/script.projects.readonly",
+                "https://www.googleapis.com/auth/script.projects",
+                "https://www.googleapis.com/auth/script.processes",
+                "https://www.googleapis.com/auth/script.metrics",
+                "https://www.googleapis.com/auth/script.deployments.readonly",
+                "https://www.googleapis.com/auth/script.deployments",
+                "https://www.googleapis.com/auth/drive.file",
+            ],
+        });
+    }
+}
 
 const retrieve = async (req, res, next) => {
     try {
+        await loadAuth();
+
         const clientAuth = await auth.getClient();
         const googleForms = await google.forms({
             version: "v1",
@@ -45,6 +55,8 @@ const retrieve = async (req, res, next) => {
 
 const get_form_items = async (req, res, next) => {
     try {
+        await loadAuth();
+
         const clientAuth = await auth.getClient();
         const reqHeaders = await clientAuth.getRequestHeaders();
 
@@ -66,6 +78,8 @@ const get_form_items = async (req, res, next) => {
 
 const submit = async (req, res, next) => {
     try {
+        await loadAuth();
+
         const { body } = req;
 
         const clientAuth = await auth.getClient();
@@ -90,6 +104,8 @@ const submit = async (req, res, next) => {
 
 const charts = async (req, res, next) => {
     try {
+        await loadAuth();
+
         const clientAuth = await auth.getClient();
         const reqHeaders = await clientAuth.getRequestHeaders();
         let resp = await axios.get(WEB_APP_URL, {
@@ -111,6 +127,8 @@ const charts = async (req, res, next) => {
 
 const chartBlob = async (req, res, next) => {
     try {
+        await loadAuth();
+
         const { chartID } = req.params;
         const clientAuth = await auth.getClient();
         const reqHeaders = await clientAuth.getRequestHeaders();
@@ -125,7 +143,7 @@ const chartBlob = async (req, res, next) => {
                 ...reqHeaders,
             }
         });
-        
+
         return res.send(resp.data);
     } catch (error) {
         return next(error);
