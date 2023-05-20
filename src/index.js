@@ -101,8 +101,8 @@ app.get('/', (req, res) => {
 // app.use('/api/', authenticateTokenMiddleware, tracerFormRoutes, jobsRoutes);
 // app.use(errorHandler);
 
-mongoose.connection.on('open', (asd) => {
-    app.listen(PORT, () => {
+mongoose.connection.on('open', () => {
+    app.listen(PORT, '0.0.0.0', () => {
         console.log(`Server running at port ${PORT} !!!`);
     });
 });
