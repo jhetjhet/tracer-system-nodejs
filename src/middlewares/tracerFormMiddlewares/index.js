@@ -32,98 +32,98 @@ async function loadAuth() {
     }
 }
 
-const retrieve = async (req, res, next) => {
-    try {
-        await loadAuth();
+// const retrieve = async (req, res, next) => {
+//     try {
+//         await loadAuth();
 
-        const clientAuth = await auth.getClient();
-        const googleForms = await google.forms({
-            version: "v1",
-            auth: clientAuth,
-        });
+//         const clientAuth = await auth.getClient();
+//         const googleForms = await google.forms({
+//             version: "v1",
+//             auth: clientAuth,
+//         });
 
-        const form = await googleForms.forms.get({
-            formId: FORM_ID,
-        });
+//         const form = await googleForms.forms.get({
+//             formId: FORM_ID,
+//         });
 
 
-        return res.json(form.data);
-    } catch (error) {
-        return next(error);
-    }
-}
+//         return res.json(form.data);
+//     } catch (error) {
+//         return next(error);
+//     }
+// }
 
-const get_form_items = async (req, res, next) => {
-    try {
-        await loadAuth();
+// const get_form_items = async (req, res, next) => {
+//     try {
+//         await loadAuth();
 
-        const clientAuth = await auth.getClient();
-        const reqHeaders = await clientAuth.getRequestHeaders();
+//         const clientAuth = await auth.getClient();
+//         const reqHeaders = await clientAuth.getRequestHeaders();
 
-        let resp = await axios.get(WEB_APP_URL, {
-            params: {
-                __function: "retrieveFormItems",
-                formID: FORM_ID,
-            },
-            headers: {
-                ...reqHeaders,
-            }
-        });
+//         let resp = await axios.get(WEB_APP_URL, {
+//             params: {
+//                 __function: "retrieveFormItems",
+//                 formID: FORM_ID,
+//             },
+//             headers: {
+//                 ...reqHeaders,
+//             }
+//         });
 
-        return res.json(resp.data);
-    } catch (error) {
-        return next(error);
-    }
-}
+//         return res.json(resp.data);
+//     } catch (error) {
+//         return next(error);
+//     }
+// }
 
-const submit = async (req, res, next) => {
-    try {
-        await loadAuth();
+// const submit = async (req, res, next) => {
+//     try {
+//         await loadAuth();
 
-        const { body } = req;
+//         const { body } = req;
 
-        const clientAuth = await auth.getClient();
-        const reqHeaders = await clientAuth.getRequestHeaders();
-        console.log(body);
-        let resp = await axios.get(WEB_APP_URL, {
-            params: {
-                ...body,
-                __function: "submitGForm",
-                formID: FORM_ID,
-            },
-            headers: {
-                ...reqHeaders,
-            }
-        });
+//         const clientAuth = await auth.getClient();
+//         const reqHeaders = await clientAuth.getRequestHeaders();
+//         console.log(body);
+//         let resp = await axios.get(WEB_APP_URL, {
+//             params: {
+//                 ...body,
+//                 __function: "submitGForm",
+//                 formID: FORM_ID,
+//             },
+//             headers: {
+//                 ...reqHeaders,
+//             }
+//         });
 
-        return res.end();
-    } catch (error) {
-        return next(error);
-    }
-}
+//         return res.end();
+//     } catch (error) {
+//         return next(error);
+//     }
+// }
 
-const charts = async (req, res, next) => {
-    try {
-        await loadAuth();
+// const charts = async (req, res, next) => {
+//     try {
+//         await loadAuth();
 
-        const clientAuth = await auth.getClient();
-        const reqHeaders = await clientAuth.getRequestHeaders();
-        let resp = await axios.get(WEB_APP_URL, {
-            params: {
-                __function: "retrieveSpreadSheetCharts",
-                spreadSheetID: SPREAD_SHEET_ID,
-                sheetName: SHEET_NAME,
-            },
-            headers: {
-                ...reqHeaders,
-            }
-        });
+//         const clientAuth = await auth.getClient();
+//         const reqHeaders = await clientAuth.getRequestHeaders();
+//         let resp = await axios.get(WEB_APP_URL, {
+//             params: {
+//                 __function: "retrieveSpreadSheetCharts",
+//                 spreadSheetID: SPREAD_SHEET_ID,
+//                 sheetName: SHEET_NAME,
+//             },
+//             headers: {
+//                 ...reqHeaders,
+//             }
+//         });
 
-        return res.send(resp.data);
-    } catch (error) {
-        return next(error);
-    }
-}
+//         return res.send(resp.data);
+//     } catch (error) {
+//         return next(error);
+//     }
+// }
 
 const chartBlob = async (req, res, next) => {
     try {
@@ -151,9 +151,9 @@ const chartBlob = async (req, res, next) => {
 }
 
 module.exports = {
-    retrieve,
-    get_form_items,
-    submit,
-    charts,
+    // retrieve,
+    // get_form_items,
+    // submit,
+    // charts,
     chartBlob,
 }
