@@ -96,15 +96,17 @@ app.get('/', (req, res) => {
     return res.send('HELLO SHIT');
 });
 
+app.listen(PORT, '0.0.0.0', () => {
+    console.log(`Server running at port ${PORT} !!!`);
+});
+
 // app.use('/', authenticationRoutes);
 
 // app.use('/api/', authenticateTokenMiddleware, tracerFormRoutes, jobsRoutes);
 // app.use(errorHandler);
 
 mongoose.connection.on('open', () => {
-    app.listen(PORT, '0.0.0.0', () => {
-        console.log(`Server running at port ${PORT} !!!`);
-    });
+   
 });
 
 async function initDB() {
