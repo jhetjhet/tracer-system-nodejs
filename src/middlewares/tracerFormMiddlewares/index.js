@@ -6,7 +6,7 @@
 // const SPREAD_SHEET_ID = process.env.SPREAD_SHEET_ID;
 // const SHEET_NAME = process.env.SHEET_NAME;
 
-let auth = null;
+// let auth = null;
 
 // async function loadAuth() {
 //     if (auth === null) {
