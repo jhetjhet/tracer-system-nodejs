@@ -110,6 +110,7 @@ mongoose.connection.on('open', () => {
 async function initDB() {
     try {
         await mongoose.connect(MONGO_DB_CONN);
+        console.log(`Mongo db connected....`);
     } catch (error) {
         console.log(error);
     }
