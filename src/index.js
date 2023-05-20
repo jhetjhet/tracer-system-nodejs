@@ -22,7 +22,7 @@
 // const retrieve = async () => {
 //     try {
 //         const clientAuth = await auth.getClient();
-        
+
 //         axios.get('https://script.google.com/macros/s/AKfycby9Fo7oVzJVBsHF9VqvOLDn0YkNmP_HwVEryAyeJ9StTcHZHiiJZm1__923YhfNvbPC/exec').then((resp) => {
 //             console.log("ASDASDASD");
 //         }).catch((error) => {
@@ -69,17 +69,17 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 var morgan = require('morgan');
 
-const {
-    errorHandler,
-} = require('./middlewares');
-const {
-    tracerFormRoutes,
-    authenticationRoutes,
-    jobsRoutes,
-} = require('./routes');
-const {
-    authenticateTokenMiddleware,
-} = require('./middlewares/authenticationMiddlewares');
+// const {
+//     errorHandler,
+// } = require('./middlewares');
+// const {
+//     tracerFormRoutes,
+//     authenticationRoutes,
+//     jobsRoutes,
+// } = require('./routes');
+// const {
+//     authenticateTokenMiddleware,
+// } = require('./middlewares/authenticationMiddlewares');
 
 const app = express();
 const MONGO_DB_CONN = process.env.MONGO_DB_CONN;
@@ -101,21 +101,21 @@ app.get('/', (req, res) => {
 // app.use('/api/', authenticateTokenMiddleware, tracerFormRoutes, jobsRoutes);
 // app.use(errorHandler);
 
-mongoose.connection.on('open', () => {
-   
-});
+// mongoose.connection.on('open', () => {
+
+// });
 
 const connectDB = async () => {
     try {
-      const conn = await mongoose.connect(MONGO_DB_CONN);
-      console.log(`MongoDB Connected: ${conn.connection.host}`);
+        const conn = await mongoose.connect(MONGO_DB_CONN);
+        console.log(`MongoDB Connected: ${conn.connection.host}`);
     } catch (error) {
-      console.log(error);
-      process.exit(1);
+        console.log(error);
+        process.exit(1);
     }
-  }
+}
 
-  connectDB().then(() => {
+connectDB().then(() => {
     app.listen(PORT, '0.0.0.0', () => {
         console.log(`Server running at port ${PORT} !!!`);
     });
