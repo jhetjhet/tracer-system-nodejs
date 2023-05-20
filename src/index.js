@@ -73,9 +73,9 @@ const {
     errorHandler,
 } = require('./middlewares');
 const {
-    // tracerFormRoutes,
+    tracerFormRoutes,
     // authenticationRoutes,
-    jobsRoutes,
+    // jobsRoutes,
 } = require('./routes');
 // const {
 //     authenticateTokenMiddleware,
