@@ -73,7 +73,7 @@ const {
     errorHandler,
 } = require('./middlewares');
 const {
-    tracerFormRoutes,
+    // tracerFormRoutes,
     // authenticationRoutes,
     jobsRoutes,
 } = require('./routes');
