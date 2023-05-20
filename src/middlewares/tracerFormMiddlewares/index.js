@@ -125,35 +125,35 @@ async function loadAuth() {
 //     }
 // }
 
-const chartBlob = async (req, res, next) => {
-    try {
-        await loadAuth();
+// const chartBlob = async (req, res, next) => {
+//     try {
+//         await loadAuth();
 
-        const { chartID } = req.params;
-        const clientAuth = await auth.getClient();
-        const reqHeaders = await clientAuth.getRequestHeaders();
-        let resp = await axios.get(WEB_APP_URL, {
-            params: {
-                __function: "retrieveChartBlob",
-                spreadSheetID: SPREAD_SHEET_ID,
-                sheetName: SHEET_NAME,
-                chartID: chartID,
-            },
-            headers: {
-                ...reqHeaders,
-            }
-        });
+//         const { chartID } = req.params;
+//         const clientAuth = await auth.getClient();
+//         const reqHeaders = await clientAuth.getRequestHeaders();
+//         let resp = await axios.get(WEB_APP_URL, {
+//             params: {
+//                 __function: "retrieveChartBlob",
+//                 spreadSheetID: SPREAD_SHEET_ID,
+//                 sheetName: SHEET_NAME,
+//                 chartID: chartID,
+//             },
+//             headers: {
+//                 ...reqHeaders,
+//             }
+//         });
 
-        return res.send(resp.data);
-    } catch (error) {
-        return next(error);
-    }
-}
+//         return res.send(resp.data);
+//     } catch (error) {
+//         return next(error);
+//     }
+// }
 
 module.exports = {
     // retrieve,
     // get_form_items,
     // submit,
     // charts,
-    chartBlob,
+    // chartBlob,
 }
