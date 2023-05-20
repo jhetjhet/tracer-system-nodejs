@@ -96,10 +96,6 @@ app.get('/', (req, res) => {
     return res.send('HELLO SHIT');
 });
 
-app.listen(PORT, '0.0.0.0', () => {
-    console.log(`Server running at port ${PORT} !!!`);
-});
-
 // app.use('/', authenticationRoutes);
 
 // app.use('/api/', authenticateTokenMiddleware, tracerFormRoutes, jobsRoutes);
@@ -109,13 +105,18 @@ mongoose.connection.on('open', () => {
    
 });
 
-async function initDB() {
+const connectDB = async () => {
     try {
-        await mongoose.connect(MONGO_DB_CONN);
-        console.log(`Mongo db connected....`);
+      const conn = await mongoose.connect(MONGO_DB_CONN);
+      console.log(`MongoDB Connected: ${conn.connection.host}`);
     } catch (error) {
-        console.log(error);
+      console.log(error);
+      process.exit(1);
     }
-}
+  }
 
-initDB();
+  connectDB().then(() => {
+    app.listen(PORT, '0.0.0.0', () => {
+        console.log(`Server running at port ${PORT} !!!`);
+    });
+})
