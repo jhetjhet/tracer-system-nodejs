@@ -85,12 +85,12 @@ const app = express();
 const MONGO_DB_CONN = process.env.MONGO_DB_CONN;
 const PORT = process.env.PORT;
 
-app.use(morgan('combined'));
-app.use(cors());
-app.use(express.json());
-app.use(express.urlencoded({
-    extended: true,
-}));
+// app.use(morgan('combined'));
+// app.use(cors());
+// app.use(express.json());
+// app.use(express.urlencoded({
+//     extended: true,
+// }));
 
 app.get('/', (req, res) => {
     return res.send('HELLO SHIT');
