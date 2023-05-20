@@ -1,12 +1,12 @@
 // const axios = require("axios");
 // const { google } = require("googleapis");
 
-const FORM_ID = process.env.FORM_ID;
-const WEB_APP_URL = process.env.WEB_APP_URL;
-const SPREAD_SHEET_ID = process.env.SPREAD_SHEET_ID;
-const SHEET_NAME = process.env.SHEET_NAME;
+// const FORM_ID = process.env.FORM_ID;
+// const WEB_APP_URL = process.env.WEB_APP_URL;
+// const SPREAD_SHEET_ID = process.env.SPREAD_SHEET_ID;
+// const SHEET_NAME = process.env.SHEET_NAME;
 
-var auth = null;
+let auth = null;
 
 // async function loadAuth() {
 //     if (auth === null) {
