@@ -69,9 +69,9 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 var morgan = require('morgan');
 
-// const {
-//     errorHandler,
-// } = require('./middlewares');
+const {
+    errorHandler,
+} = require('./middlewares');
 // const {
 //     tracerFormRoutes,
 //     authenticationRoutes,
