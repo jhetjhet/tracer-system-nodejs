@@ -72,11 +72,11 @@ var morgan = require('morgan');
 const {
     errorHandler,
 } = require('./middlewares');
-// const {
-//     tracerFormRoutes,
-//     authenticationRoutes,
-//     jobsRoutes,
-// } = require('./routes');
+const {
+    tracerFormRoutes,
+    // authenticationRoutes,
+    jobsRoutes,
+} = require('./routes');
 // const {
 //     authenticateTokenMiddleware,
 // } = require('./middlewares/authenticationMiddlewares');
