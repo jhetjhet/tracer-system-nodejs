@@ -8,29 +8,29 @@ const SHEET_NAME = process.env.SHEET_NAME;
 
 var auth = null;
 
-async function loadAuth() {
-    if (auth === null) {
-        const keyFileResp = await axios.get(process.env.GOOGLE_AUTH_KEYFILE);
+// async function loadAuth() {
+//     if (auth === null) {
+//         const keyFileResp = await axios.get(process.env.GOOGLE_AUTH_KEYFILE);
 
-        auth = new google.auth.GoogleAuth({
-            credentials: keyFileResp.data,
-            scopes: [
-                "https://www.googleapis.com/auth/forms",
-                "https://www.googleapis.com/auth/spreadsheets",
-                "https://www.googleapis.com/auth/drive",
-                "https://www.googleapis.com/auth/drive.readonly",
+//         auth = new google.auth.GoogleAuth({
+//             credentials: keyFileResp.data,
+//             scopes: [
+//                 "https://www.googleapis.com/auth/forms",
+//                 "https://www.googleapis.com/auth/spreadsheets",
+//                 "https://www.googleapis.com/auth/drive",
+//                 "https://www.googleapis.com/auth/drive.readonly",
 
-                "https://www.googleapis.com/auth/script.projects.readonly",
-                "https://www.googleapis.com/auth/script.projects",
-                "https://www.googleapis.com/auth/script.processes",
-                "https://www.googleapis.com/auth/script.metrics",
-                "https://www.googleapis.com/auth/script.deployments.readonly",
-                "https://www.googleapis.com/auth/script.deployments",
-                "https://www.googleapis.com/auth/drive.file",
-            ],
-        });
-    }
-}
+//                 "https://www.googleapis.com/auth/script.projects.readonly",
+//                 "https://www.googleapis.com/auth/script.projects",
+//                 "https://www.googleapis.com/auth/script.processes",
+//                 "https://www.googleapis.com/auth/script.metrics",
+//                 "https://www.googleapis.com/auth/script.deployments.readonly",
+//                 "https://www.googleapis.com/auth/script.deployments",
+//                 "https://www.googleapis.com/auth/drive.file",
+//             ],
+//         });
+//     }
+// }
 
 // const retrieve = async (req, res, next) => {
 //     try {
