@@ -72,7 +72,11 @@ var morgan = require('morgan');
 const {
     errorHandler,
 } = require('./middlewares');
-
+const {
+    // tracerFormRoutes,
+    // authenticationRoutes,
+    // jobsRoutes,
+} = require('./routes');
 // const {
 //     authenticateTokenMiddleware,
 // } = require('./middlewares/authenticationMiddlewares');
@@ -112,11 +116,6 @@ const connectDB = async () => {
 }
 
 connectDB().then(() => {
-    const {
-        tracerFormRoutes,
-        // authenticationRoutes,
-        // jobsRoutes,
-    } = require('./routes');
     app.listen(PORT, '0.0.0.0', () => {
         console.log(`Server running at port ${PORT} !!!`);
     });
